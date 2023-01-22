@@ -3,7 +3,7 @@ import sqlite3
 from onetimepass import valid_totp
 from secrets import choice
 
-# Sqlite database and table
+
 def sqllitefile():
     global conn
     conn = sqlite3.connect('identifier.sqlite')
@@ -34,7 +34,6 @@ def choose():
             print('---------------------------------------------')
 
 
-
 def generate_secret():  # Function to return a random string with length 16.
     secret = ''
     while len(secret) < 16:
@@ -42,17 +41,15 @@ def generate_secret():  # Function to return a random string with length 16.
     return secret
 
 
-# For Registeration
+# Registeration
 def register():
-    # User Name
-    nu = True
     user = input('Podaj login: ')
 
-    # If user_name already exists
+    # If username already exists
     exist = conn.execute("select NAME from user where NAME like ?", (user,)).fetchone()
     if exist:
         print('------------------------------------------')
-        print('user_name not available')
+        print('user name not available')
         print('Please use different user name to register')
         register()
 
@@ -106,7 +103,6 @@ def auth():
             print('Wrong otp, please try again.')
 
 
-
 # For Password in Login
 def login_password():
     # Password
@@ -127,6 +123,7 @@ def login_password():
     else:
         print("Login Fail")
         login_password()
+
 
 # For Username in Login
 def login():
